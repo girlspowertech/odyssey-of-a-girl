@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Jeju Hallasan';
+    src: url(/fonts/JejuHallasan-Regular-subset.ttf) format('truetype');
+  }
+}
+
+body {
+  @apply bg-primary;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}

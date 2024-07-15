@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { HashRouter } from 'react-router-dom';
 import { Square, isValidSquare } from './core';
 import { OdysseyProvider } from './core/context';
 import './index.css';
@@ -27,9 +28,11 @@ const gameData = {
 if (isValidGameData(gameData)) {
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-      <OdysseyProvider initialData={ gameData }>
-        <App />
-      </OdysseyProvider>
+      <HashRouter>
+        <OdysseyProvider initialData={ gameData }>
+          <App />
+        </OdysseyProvider>
+      </HashRouter>
     </React.StrictMode>,
   );
 } else {
