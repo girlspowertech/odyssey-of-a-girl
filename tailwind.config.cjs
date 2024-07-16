@@ -7,8 +7,13 @@ module.exports = {
       jeju: ['Jeju Hallasan', 'serif'],
     },
     extend: {
+      screens: {
+        'xs': '480px',
+        'xxs': '360px',
+      },
       backgroundImage: {
         'girl': "url('/assets/girl.svg')",
+        'title': "url('/assets/title.svg')",
       },
       colors: {
         'primary': '#5EA74C',
