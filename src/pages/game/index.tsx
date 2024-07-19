@@ -8,7 +8,7 @@ const Game = () => {
 
   return (
     <div className='flex items-center flex-col font-jeju  mt-5 text-secondary '>
-      <h1 className='text-lg sm:text-xl'>Odyssey of a girl</h1>
+      <h1 className='text-xl sm:text-3xl'>Odyssey of a girl</h1>
       <Chessboard />
       <button className='mt-3' onClick={ move }>Move</button>
       <p>{ message }</p>

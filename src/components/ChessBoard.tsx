@@ -18,11 +18,11 @@ const colorsPalette = [
 ];
 
 const Chessboard: FC = () => {
+
   const { message } = useOdyssey();
   const pathPropsList = Array.from({ length: CELL_SIZE }, (_, i) => ({
-    className: colorsPalette[i % colorsPalette.length],
-    key: i,
-    children: i + 1
+    className: `${ colorsPalette[i % colorsPalette.length] } cursor-pointer hover:drop-shadow-md
+     transition duration-200 ease-in-out`,
   }));
 
   return (
