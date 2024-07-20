@@ -92,7 +92,7 @@ export const Spiral: FC<SpiralProps> = ({ pathPropsList, ...props }) => {
     'M0 155H65L65 245H0L0 155Z',
     'M0 65L65 65L65 155H0L0 65Z',
     'M0 0L65 0L65 65L0 65L0 0Z',
-  ];
+  ].reverse();
 
   return (
     <svg

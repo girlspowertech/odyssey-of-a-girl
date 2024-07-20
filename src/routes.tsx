@@ -13,7 +13,12 @@ export default [
     element: <Game />,
   },
   {
+    path: '/about',
+    element:
+    <div className='flex mt-32 items-center justify-center text-[150px] text-green50'> TODO </div>
+  },
+  {
     path: '/*',
-    element: <div> 404 </div>
+    element: <div className='flex mt-32 items-center justify-center text-[150px] text-green50'> 404 </div>
   }
 ] as RouteObject[];

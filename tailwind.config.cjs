@@ -16,9 +16,9 @@ module.exports = {
         'title': "url('/assets/title.svg')",
       },
       colors: {
-        'primary': '#5EA74C',
-        'secondary': '#C9F5AE',
-        'green110': '#25421E'
+        'green50': '#C9F5AE',
+        'green100': '#5EA74C',
+        'green110': '#5A6A4A',
       },
     },
   },

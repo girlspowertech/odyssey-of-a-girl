@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useOdyssey } from "../core/context";
 import { Spiral } from "./svg";
 
-const CELL_SIZE = 31;
+const CELL_LENGTH = 29;
 
 const colorsPalette = [
   'text-red-400',
@@ -20,7 +20,7 @@ const colorsPalette = [
 const Chessboard: FC = () => {
 
   const { message } = useOdyssey();
-  const pathPropsList = Array.from({ length: CELL_SIZE }, (_, i) => ({
+  const pathPropsList = Array.from({ length: CELL_LENGTH }, (_, i) => ({
     className: `${ colorsPalette[i % colorsPalette.length] } cursor-pointer hover:drop-shadow-md
      transition duration-200 ease-in-out`,
   }));
@@ -33,7 +33,7 @@ const Chessboard: FC = () => {
         pathPropsList={
           pathPropsList
         } />
-      <div className="mt-4 mx-auto">{ "ChessBoard" }</div>
+      <div className="mt-6 mx-auto leading-3"> ChessBoard </div>
     </div>
   );
 }

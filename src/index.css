@@ -10,7 +10,7 @@
 }
 
 body {
-  @apply bg-primary;
+  @apply bg-green100;
   height: 100dvh;
 }
 
