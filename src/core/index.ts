@@ -101,17 +101,19 @@ class Girl {
 class EventStrategy {
   execute(girl: Girl, data: EventSquare): string {
     console.log(`事件：${ data.description }`);
+
     girl.updateStats(data.effect);
     return `${ girl.name } ${ data.description }。效果：${ JSON.stringify(data.effect) }`;
   }
 }
 
 class ChoiceStrategy {
-  execute(girl: Girl, data: ChoiceSquare): string {
-    console.log(`选择：${ data.description }`);
-    const choice = data.options[Math.floor(Math.random() * data.options.length)];
-    girl.updateStats(choice.effect);
-    return `${ girl.name } 选择了 ${ choice.text }。效果：${ JSON.stringify(choice.effect) }`;
+  execute(girl: Girl, data: ChoiceSquare, choice?: number): string {
+
+    console.log(`选择：${ data.description } ${ data.options[choice!].text }`);
+    const choiceOption = data.options[choice!];
+    girl.updateStats(choiceOption.effect);
+    return `${ girl.name } 选择了 ${ choiceOption.text }。效果：${ JSON.stringify(choiceOption.effect) }`;
   }
 }
 
@@ -132,8 +134,13 @@ class SquareContext {
     };
   }
 
-  executeStrategy(type: Square['type'], girl: Girl, data: Square): string {
-    return this.strategies[type].execute(girl, data as any);
+  executeStrategy(type: Square['type'], girl: Girl, data: Square, choice?: number): string {
+
+    if (type === 'choice' && choice === undefined) {
+      throw new Error('需要选择一个选项');
+    }
+
+    return this.strategies[type].execute(girl, data as any, choice);
   }
 }
 
@@ -144,22 +151,24 @@ class Odyssey {
   board: Square[];
 
   constructor (odysseyData: OdysseyData) {
-    this.girl = new Girl("琪琪");
+    this.girl = new Girl("Rita");
     this.board = odysseyData.squares;
     this.squareContext = new SquareContext();
     this.currentPosition = 0;
   }
 
-  move(): string {
-    const steps = Math.floor(Math.random() * 6) + 1;
-    this.currentPosition = (this.currentPosition + steps) % this.board.length;
-    const currentSquare = this.board[this.currentPosition];
-    console.log(`${ this.girl.name } 移动了 ${ steps } 步，到达第 ${ this.currentPosition + 1 } 格。`)
+  move(choice?: number): string {
+    if (this.currentPosition >= this.board.length) {
+      throw new Error('游戏结束');
+    }
 
+    const currentSquare = this.board[this.currentPosition];
+    console.log(`当前位置：${ this.currentPosition }`);
     const result = this.squareContext.executeStrategy(
       currentSquare.type,
       this.girl,
-      currentSquare
+      currentSquare,
+      choice
     );
 
     return result

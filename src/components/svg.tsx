@@ -116,9 +116,9 @@ export const Spiral: FC<SpiralProps> = ({ pathPropsList, ...props }) => {
       )) }
       { paths.map((_, i) => (
         <text
-          x="32px" dominant-baseline="middle" text-anchor="middle"
+          x="32px" dominantBaseline="middle" textAnchor="middle"
           key={ i }
-          className="text-gray-50 font-semibold text-xl bg-black transofrm translate-y-8"
+          className="text-gray-50 font-semibold text-2xl bg-black transofrm translate-y-8"
         >
           <textPath
             xlinkHref={ `#path-${ i }` }

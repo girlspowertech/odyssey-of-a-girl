@@ -4,7 +4,9 @@ import { Odyssey, OdysseyData } from '.';
 interface OdysseyContextType {
   game: Odyssey;
   message: string;
-  move: () => void;
+  move: (choice?: number) => void;
+  preview: () => void;
+  showingPreview: boolean;
 }
 
 const OdysseyContext = createContext<OdysseyContextType | undefined>(undefined);
@@ -17,10 +19,12 @@ interface OdysseyProviderProps {
 const OdysseyProvider: React.FC<OdysseyProviderProps> = ({ children, initialData }) => {
   const [game, setGame] = useState(() => new Odyssey(initialData));
   const [message, setMessage] = useState<string>('');
+  const [showingPreview, setShowingPreview] = useState<boolean>(false);
 
-  const move = () => {
+  const move = (choice?: number) => {
     try {
-      const msg = game.move();
+      const msg = game.move(choice);
+      setShowingPreview(false);
       setMessage(msg);
     } catch (error) {
       if (error instanceof Error) {
@@ -31,10 +35,16 @@ const OdysseyProvider: React.FC<OdysseyProviderProps> = ({ children, initialData
     }
   };
 
+  const preview = () => {
+    setShowingPreview(true);
+  }
+
   const value = {
     game,
     message,
     move,
+    preview,
+    showingPreview
   };
 
   return (
